@@ -6,20 +6,111 @@
 <title>Plan Aguinaldo: reparte tu aguinaldo antes de gastarlo</title>
 <meta name="description" content="Calcula cuánto gastar en regalos, qué deuda pagar primero y cuánto dejar para enero. App web con plan en PDF, registro de gastos y cierre de enero.">
 <meta name="theme-color" content="#101827">
+<link rel="canonical" href="https://TU_DOMINIO.com/">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Plan Aguinaldo">
+<meta property="og:site_name" content="Plan Aguinaldo">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://TU_DOMINIO.com/">
+<meta property="og:title" content="Plan Aguinaldo: reparte tu aguinaldo antes de gastarlo">
 <meta property="og:description" content="Calcula cuánto gastar en regalos, qué deuda pagar primero y cuánto dejar para enero.">
-<!-- TODO: og:image 1200x630 y og:url con el dominio final -->
+<meta property="og:image" content="https://TU_DOMINIO.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Plan Aguinaldo: tu aguinaldo repartido en deudas, enero, regalos, fiestas y ahorro.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plan Aguinaldo: reparte tu aguinaldo antes de gastarlo">
+<meta name="twitter:description" content="Calcula cuánto gastar en regalos, qué deuda pagar primero y cuánto dejar para enero.">
+<meta name="twitter:image" content="https://TU_DOMINIO.com/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101827'/%3E%3Cpath d='M16 7a9 9 0 0 1 9 9h-9z' fill='%23FFC83D'/%3E%3Cpath d='M16 16h9a9 9 0 1 1-9-9z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2">
 <script>document.documentElement.classList.add('js')</script>
-<!--
-  Analítica: pegar aquí GTM/GA4 y el Pixel de Meta.
-  track() empuja eventos a dataLayer y fbq si existen:
-  cta_click, demo_interact, country_change, paydate_change, faq_open, app_tab, app_add_expense (+ InitiateCheckout en Meta).
--->
+
+<!-- ============================================================================
+     LO UNICO QUE TIENES QUE TOCAR ANTES DE SUBIR
+
+     1) Busca y reemplaza en TODO el archivo:  TU_CODIGO_DE_PRODUCTO
+        por el codigo de tu producto en Hotmart.
+     2) Busca y reemplaza en TODO el archivo:  TU_DOMINIO.com
+        por tu dominio final (sin http:// y sin barra al final).
+     3) Rellena gtmId y metaPixelId aqui abajo. Si no los usas, dejalos vacios.
+
+     Al abrir la pagina, la consola del navegador te dice si quedo algo sin
+     rellenar. Lee tambien LEER-ANTES-DE-SUBIR.md
+     ============================================================================ -->
+<script>
+window.LAUNCH = {
+  checkoutUrl : 'https://pay.hotmart.com/TU_CODIGO_DE_PRODUCTO',
+  siteUrl     : 'https://TU_DOMINIO.com',
+  contactEmail: 'hola@TU_DOMINIO.com',
+  gtmId       : '',   // ej. 'GTM-XXXXXXX'
+  metaPixelId : '',   // ej. '123456789012345'
+};
+
+/* Analitica. Solo se carga si pusiste el ID; asi la pagina no pide nada a
+   Google ni a Meta mientras la estas probando.
+   Eventos que ya empuja la pagina a dataLayer y a fbq:
+   cta_click, demo_interact, country_change, paydate_change, faq_open,
+   app_tab, app_add_expense, y el estandar InitiateCheckout en Meta. */
+(function () {
+  var L = window.LAUNCH;
+  window.dataLayer = window.dataLayer || [];
+  if (L.gtmId) {
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(L.gtmId);
+    document.head.appendChild(g);
+  }
+  if (L.metaPixelId) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', L.metaPixelId);
+    window.fbq('track', 'PageView');
+  }
+})();
+</script>
+
+<!-- Datos estructurados: ayudan a que Google entienda que es un producto de
+     pago y muestre las preguntas frecuentes en los resultados. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Plan Aguinaldo",
+  "description": "App web para repartir tu aguinaldo entre deudas, pagos de enero, regalos, fiestas y ahorro, con plan en PDF, registro de gastos y cierre de enero.",
+  "image": "https://TU_DOMINIO.com/og-image.jpg",
+  "brand": { "@type": "Brand", "name": "Plan Aguinaldo" },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://TU_DOMINIO.com/",
+    "price": "119",
+    "priceCurrency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "category": "Aplicación web"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Es una app o un PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Es una app web. La abres en el navegador y ahí armas tu plan; cuando termines, lo puedes descargar en PDF." } },
+    { "@type": "Question", "name": "¿Tengo que instalar algo?", "acceptedAnswer": { "@type": "Answer", "text": "No. Funciona en Safari, Chrome y los demás navegadores actuales, en celular o computadora." } },
+    { "@type": "Question", "name": "¿Cómo me llega el acceso?", "acceptedAnswer": { "@type": "Answer", "text": "Cuando Hotmart confirma el pago te manda un correo con el enlace y las instrucciones. También lo encuentras en tu cuenta de Hotmart." } },
+    { "@type": "Question", "name": "¿Dónde quedan mis datos?", "acceptedAnswer": { "@type": "Answer", "text": "El presupuesto se guarda en tu propio dispositivo, así que conviene descargar el PDF como respaldo. La app no te pide datos bancarios." } },
+    { "@type": "Question", "name": "¿Sirve si no vivo en México?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Funciona para México, Argentina, Colombia, Perú, Ecuador y Chile, cada uno con su moneda." } },
+    { "@type": "Question", "name": "¿Y si no me sirve?", "acceptedAnswer": { "@type": "Answer", "text": "Tienes 7 días de garantía. El reembolso lo pides desde tu cuenta de Hotmart dentro de ese plazo." } },
+    { "@type": "Question", "name": "¿Es asesoría financiera?", "acceptedAnswer": { "@type": "Answer", "text": "No. Es una herramienta para organizarte con sugerencias generales. Los montos los decides tú y no prometemos resultados." } }
+  ]
+}
+</script>
 <style>
 /* Switzer (Fontshare, uso comercial libre) para titulares; texto con la fuente del sistema. */
 @font-face{font-family:Switzer;font-weight:600;font-style:normal;font-display:swap;src:url(https://cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2) format('woff2')}
@@ -818,10 +909,9 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
     <div class="foot">
       <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1E2839"/><path d="M16 7a9 9 0 0 1 9 9h-9z" fill="#FFC83D"/><path d="M16 16h9a9 9 0 0 1-2.64 6.36z" fill="#13A77A"/><path d="M22.36 22.36A9 9 0 1 1 16 7v9z" fill="#fff"/></svg>Plan Aguinaldo</span>
       <nav aria-label="Legal">
-        <!-- TODO: enlazar páginas reales -->
-        <a href="/aviso-de-privacidad">Aviso de privacidad</a>
-        <a href="/terminos">Términos y condiciones</a>
-        <a href="mailto:hola@TU_DOMINIO.com">Contacto</a>
+        <a href="aviso-de-privacidad.html">Aviso de privacidad</a>
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="mailto:hola@TU_DOMINIO.com" data-contact>Contacto</a>
       </nav>
     </div>
     <div class="legal">
@@ -842,8 +932,9 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
 'use strict';
 
 // Revisar antes de publicar
+const LAUNCH = window.LAUNCH || {};
 const CONFIG = {
-  checkoutUrl: 'https://pay.hotmart.com/TU_CODIGO_DE_PRODUCTO',
+  checkoutUrl: LAUNCH.checkoutUrl || 'https://pay.hotmart.com/TU_CODIGO_DE_PRODUCTO',
   price: 119,
   priceCurrency: 'MXN',   // debe coincidir con el checkout vigente
   guaranteeDays: 7,       // según la configuración del producto en Hotmart
@@ -1537,7 +1628,10 @@ function checkoutHref(placement) {
   url.searchParams.set('sck', `landing_${placement}_${state.country}`.toLowerCase()); // sck aparece en el reporte de ventas de Hotmart
   return url.toString();
 }
-const refreshCheckout = () => $$('[data-checkout]').forEach(a => { a.href = checkoutHref(a.dataset.checkout); });
+const refreshCheckout = () => $$('[data-checkout]').forEach(a => {
+  a.href = checkoutHref(a.dataset.checkout);
+  a.rel = 'noopener';
+});
 
 /* ---------- formulario ---------- */
 function setCountry(code, source) {
@@ -1752,7 +1846,31 @@ function init() {
   }
 }
 
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+/* Guardia de publicacion. No cambia nada de la pagina: solo grita en la consola
+   si algo quedo sin rellenar, para que no se suba con los enlaces muertos. */
+function preflight() {
+  const L = window.LAUNCH || {};
+  const faltan = [];
+  if (/TU_CODIGO_DE_PRODUCTO/.test(L.checkoutUrl || '')) faltan.push('LAUNCH.checkoutUrl sigue con TU_CODIGO_DE_PRODUCTO: los botones de compra no llevan a ningun lado.');
+  if (/TU_DOMINIO/.test(L.siteUrl || ''))      faltan.push('LAUNCH.siteUrl sigue con TU_DOMINIO.com.');
+  if (/TU_DOMINIO/.test(L.contactEmail || '')) faltan.push('LAUNCH.contactEmail sigue con TU_DOMINIO.com.');
+  const og = document.querySelector('meta[property="og:image"]');
+  if (og && /TU_DOMINIO/.test(og.content)) faltan.push('og:image y og:url siguen con TU_DOMINIO.com: al compartir en WhatsApp saldra un recuadro vacio.');
+  if (!L.gtmId && !L.metaPixelId) faltan.push('No hay gtmId ni metaPixelId: la pagina no va a medir nada ni podras hacer retargeting.');
+  if (!faltan.length) { console.log('%c[Plan Aguinaldo] Todo listo para subir.', 'color:#13A77A;font-weight:700'); return; }
+  console.warn('%c[Plan Aguinaldo] FALTA ANTES DE SUBIR (' + faltan.length + ')', 'color:#C23B2E;font-weight:700;font-size:14px');
+  faltan.forEach(m => console.warn('  • ' + m));
+}
+
+function applyLaunch() {
+  const L = window.LAUNCH || {};
+  if (L.contactEmail && !/TU_DOMINIO/.test(L.contactEmail)) {
+    $$('[data-contact]').forEach(a => { a.href = 'mailto:' + L.contactEmail; });
+  }
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+function boot() { init(); applyLaunch(); preflight(); }
 })();
 </script>
 </body>
