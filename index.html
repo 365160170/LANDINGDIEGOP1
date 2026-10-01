@@ -128,7 +128,16 @@ window.LAUNCH = {
   /* secundario dentro de las maquetas del telefono, donde el fondo es
      #fff / #F2F3F5 / #F0F1F4 y --muted se queda corto. */
   --scr-muted:#636E86;
-  --c-deudas:#14213A; --c-enero:#3E6FD8; --c-regalos:#FFC83D; --c-fiestas:#E9823F; --c-ahorro:#13A77A;
+  /* Las cinco categorias usan los colores exactos de la app, para que el
+     comprador vea lo mismo antes y despues de pagar. Cada una trae un tono
+     oscuro que si pasa 4.5:1 como texto sobre blanco.
+     Efecto secundario bueno: Regalos deja de ser el mismo amarillo que el
+     boton de compra, que antes significaban dos cosas con un solo color. */
+  --c-deudas:#4A3AA7;  --c-deudas-deep:#4A3AA7;
+  --c-enero:#2A78D6;   --c-enero-deep:#1E5FAE;
+  --c-ahorro:#1BAF7A;  --c-ahorro-deep:#0B7A55;
+  --c-regalos:#EDA100; --c-regalos-deep:#8F6000;
+  --c-fiestas:#E87BA4; --c-fiestas-deep:#B03D70;
   --sh-sm:0 1px 2px rgba(16,24,39,.06),0 2px 8px rgba(16,24,39,.05);
   --sh-md:0 2px 4px rgba(16,24,39,.05),0 14px 34px rgba(16,24,39,.10);
   --sh-lg:0 6px 12px rgba(16,24,39,.08),0 30px 60px rgba(16,24,39,.20);
@@ -275,7 +284,17 @@ svg{display:block}
 .device{position:relative;z-index:2;width:100%;max-width:272px;background:#1C2433;border-radius:48px;padding:9px;box-shadow:var(--sh-lg)}
 .hero .device{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px rgba(0,0,0,.5)}
 .scr{position:relative;min-width:0;aspect-ratio:9/19.5;border-radius:39px;background:#F2F3F5;overflow:hidden;display:flex;flex-direction:column;font-family:var(--f-text);font-size:13px;line-height:1.3;color:#0E1726;letter-spacing:-.005em}
-.scr-body{flex:1;min-height:0;padding:40px 12px 10px;display:flex;flex-direction:column;gap:11px;overflow:hidden}
+.scr-body{position:relative;flex:1;min-height:0;padding:40px 12px 10px;display:flex;flex-direction:column;gap:11px;overflow:hidden}
+/* El recorrido demuestra que la app funciona, no la entrega. Las pantallas
+   que son el producto en si se cortan con un degradado y un remate que dice
+   que hay detras. */
+.scr-cut{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:flex-end;
+  padding:52px 12px 12px;background:linear-gradient(180deg,rgba(242,243,245,0),#F2F3F5 54%);pointer-events:none}
+.scr-cut.flow{position:static;padding:4px 0 0;background:none;justify-content:center}
+.cut-chip{display:inline-flex;align-items:center;gap:7px;max-width:100%;background:var(--navy);color:#fff;
+  border-radius:14px;padding:9px 13px;font-size:11px;font-weight:600;line-height:1.3;
+  box-shadow:0 8px 22px rgba(16,24,39,.28)}
+.cut-chip .ico{width:14px;height:14px;color:var(--cta);flex:none}
 .scr-body.enter{animation:scrIn .32s var(--ease) both}
 @keyframes scrIn{from{opacity:0;transform:translateX(14px)}}
 .scr-sub{font-size:12px;color:var(--scr-muted);font-weight:500}
@@ -292,6 +311,14 @@ svg{display:block}
 @keyframes rowIn{from{opacity:0;transform:translateY(-8px);background:#FFF8E1}}
 .dot{width:8px;height:8px;border-radius:50%;flex:none}
 .amt-xl{font-size:30px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.15}
+.amt-md{font-size:19px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.2;margin:1px 0}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}
+.split2 .grp{padding:10px}
+.bar2{display:flex;align-items:center;gap:7px;margin-top:5px;font-size:11px}
+.bar2 > span:first-child{width:28px;flex:none;font-size:10.5px}
+.bar2 i{flex:1;height:6px;border-radius:3px;background:#E8EAEE;overflow:hidden}
+.bar2 i b{display:block;height:100%;border-radius:3px}
+.bar2 .v{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
 .bar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;background:#E8EAEE}
 .bar i{display:block;height:100%}
 .prog{height:7px;border-radius:4px;background:#E8EAEE;overflow:hidden;margin-top:8px}
@@ -312,7 +339,8 @@ svg{display:block}
 .scr-toast .ico{width:16px;height:16px;color:#52D6A8}
 .scr-toast.warn .ico{color:var(--cta)}
 .tabbar{display:flex;justify-content:space-around;background:rgba(255,255,255,.97);border-top:1px solid #E3E5E9;padding:6px 2px 20px;flex:none}
-.tabbar button{appearance:none;-webkit-appearance:none;background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:52px;min-height:44px;font-size:11px;color:var(--scr-muted);cursor:pointer;border-radius:8px;transition:color .15s}
+.tabbar button{appearance:none;-webkit-appearance:none;background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;flex:1;min-width:0;min-height:44px;font-size:10px;letter-spacing:-.01em;color:var(--scr-muted);cursor:pointer;border-radius:8px;transition:color .15s}
+.tabbar button span{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .tabbar .ico{width:20px;height:20px;stroke-width:1.8}
 .tabbar button.on{color:var(--navy);font-weight:600}
 .tabbar button:active .ico{transform:scale(.9)}
@@ -488,6 +516,18 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
 .note{display:flex;gap:10px;align-items:flex-start;margin-top:32px;padding:16px 18px;border-radius:14px;background:var(--bg);font-size:15px;color:var(--muted);max-width:44rem}
 .note .ico{color:var(--c-enero);margin-top:2px}
 
+.shots{display:grid;gap:30px;margin-top:44px;justify-items:center}
+@media (min-width:700px){.shots{grid-template-columns:1fr 1fr;gap:40px}}
+.shot-fig{margin:0;max-width:300px;text-align:center}
+.shot-fig .device{max-width:260px;margin:0 auto}
+/* La captura ocupa el hueco de la pantalla dentro del marco del telefono */
+/* height:auto es obligatorio: los atributos width/height del <img> actuan como
+   estilo, y sin esto la altura queda clavada y anula el aspect-ratio. */
+.shot{display:block;width:100%;height:auto;aspect-ratio:9/19.5;object-fit:cover;object-position:top;border-radius:39px;background:#101827}
+.shot-fig figcaption{margin-top:16px}
+.shot-fig b{display:block;font-family:var(--f-head);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.shot-fig span{display:block;margin-top:4px;color:var(--muted);font-size:15px}
+
 /* ---------- precio ---------- */
 .offer-sec{overflow:hidden;background:radial-gradient(600px 400px at 80% 50%,rgba(255,200,61,.12),transparent 65%),var(--navy)}
 .offer{display:grid;gap:40px;align-items:center}
@@ -641,6 +681,7 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
       <a href="#calcula">Calculadora</a>
       <a href="#tu-plan">La app</a>
       <a href="#funciones">Qué incluye</a>
+      <a href="#la-app">La app</a>
       <a href="#precio">Precio</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
@@ -760,7 +801,7 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
             <div class="donut-c"><b data-donut-pct>0%</b><small>a ahorro</small></div>
           </div>
         </div>
-        <div class="stackbar" aria-hidden="true"><i data-seg="deudas" style="background:var(--c-deudas)"></i><i data-seg="enero" style="background:var(--c-enero)"></i><i data-seg="regalos" style="background:var(--c-regalos)"></i><i data-seg="fiestas" style="background:var(--c-fiestas)"></i><i data-seg="ahorro" style="background:var(--c-ahorro)"></i></div>
+        <div class="stackbar" aria-hidden="true"><i data-seg="deudas" style="background:var(--c-deudas)"></i><i data-seg="enero" style="background:var(--c-enero)"></i><i data-seg="ahorro" style="background:var(--c-ahorro)"></i><i data-seg="regalos" style="background:var(--c-regalos)"></i><i data-seg="fiestas" style="background:var(--c-fiestas)"></i></div>
         <ul class="plan" id="plan-list"></ul>
         <div class="notes"><p data-first></p><p data-pergift></p></div>
         <p class="sr-only" aria-live="polite" id="demo-live"></p>
@@ -781,17 +822,18 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2 id="tour-title">Así se ve la app con tus números</h2>
-      <p>Toca una pestaña o deja que avance sola. Las pantallas usan las cifras de la calculadora, y en Gastos puedes agregar uno para probar.</p>
+      <p>Son las cinco pantallas de la app, con las cifras que escribiste arriba. En Gastos puedes anotar uno y ver bajar el saldo; las demás las abres completas al entrar.</p>
     </div>
     <div class="tour" id="tour">
       <div class="tour-stage" data-reveal role="tabpanel" id="tour-panel" tabindex="0">
         <div class="device"><div class="scr" data-phone="tour"></div></div>
       </div>
       <div class="tour-tabs" role="tablist" aria-label="Pantallas de la app" data-reveal style="--d:.1s">
-        <button class="tt" role="tab" id="tt-plan" aria-controls="tour-panel" aria-selected="true" data-tour="plan"><b><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg>Presupuesto</b><span>Cuánto va a cada categoría y cuánto queda.</span><i class="tp"><i></i></i></button>
-        <button class="tt" role="tab" id="tt-cal" aria-controls="tour-panel" aria-selected="false" data-tour="cal" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Calendario</b><span>El día que cobras y los pagos que vienen.</span><i class="tp"><i></i></i></button>
-        <button class="tt" role="tab" id="tt-deudas" aria-controls="tour-panel" aria-selected="false" data-tour="deudas" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg>Deudas</b><span>Qué liquidar primero y cuánto falta.</span><i class="tp"><i></i></i></button>
-        <button class="tt" role="tab" id="tt-gastos" aria-controls="tour-panel" aria-selected="false" data-tour="gastos" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>Gastos</b><span>Anotas una compra y el saldo se actualiza.</span><i class="tp"><i></i></i></button>
+        <button class="tt" role="tab" id="tt-plan" aria-controls="tour-panel" aria-selected="true" data-tour="plan"><b><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg>Plan</b><span>Cuánto va a cada categoría, y cuánto puedes gastar de verdad.</span><i class="tp"><i></i></i></button>
+        <button class="tt" role="tab" id="tt-gastos" aria-controls="tour-panel" aria-selected="false" data-tour="gastos" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>Gastos</b><span>Anota una compra aquí mismo y mira bajar el saldo de su categoría.</span><i class="tp"><i></i></i></button>
+        <button class="tt" role="tab" id="tt-deudas" aria-controls="tour-panel" aria-selected="false" data-tour="deudas" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg>Deudas</b><span>Cada deuda con su tasa, ordenadas por la que más te cuesta.</span><i class="tp"><i></i></i></button>
+        <button class="tt" role="tab" id="tt-cal" aria-controls="tour-panel" aria-selected="false" data-tour="cal" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Calendario</b><span>El día que cobras, las fiestas y los pagos de enero.</span><i class="tp"><i></i></i></button>
+        <button class="tt" role="tab" id="tt-cierre" aria-controls="tour-panel" aria-selected="false" data-tour="cierre" tabindex="-1"><b><svg class="ico" aria-hidden="true"><use href="#i-flag"/></svg>Cierre</b><span>En enero, lo que planeaste contra lo que de verdad gastaste.</span><i class="tp"><i></i></i></button>
         <button type="button" class="tour-pause" id="tour-pause" aria-pressed="false">Pausar el recorrido</button>
       </div>
     </div>
@@ -819,12 +861,12 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
   <div class="wrap">
     <h2 id="feat-title" data-reveal>Qué incluye</h2>
     <div class="cards">
-      <article class="card-f" data-reveal style="--d:0s"><div class="mini" data-mini="plan"></div><h3>Presupuesto por categoría</h3><p>Propone montos para deudas, enero, regalos, fiestas y ahorro. Tú los ajustas.</p></article>
-      <article class="card-f" data-reveal style="--d:.08s"><div class="mini" style="position:relative"><span class="doc2" aria-hidden="true"></span><div class="doc" aria-hidden="true"><i class="h"></i><i></i><i style="width:80%"></i><i></i><i style="width:65%"></i><i></i><i style="width:45%"></i><span class="tag">PDF</span></div></div><h3>Plan en PDF</h3><p>Lo descargas o lo compartes desde el celular, también en iPhone.</p></article>
-      <article class="card-f" data-reveal style="--d:.16s"><div class="mini" data-mini="deudas"></div><h3>Deudas por prioridad</h3><p>Ordena lo que debes y muestra cuánto liquidas con lo que vas a cobrar.</p></article>
+      <article class="card-f" data-reveal style="--d:0s"><div class="mini" data-mini="plan"></div><h3>Presupuesto por categoría</h3><p>Propone montos para deudas, enero, ahorro, regalos y fiestas, y separa lo que puedes gastar de lo que queda apartado. Tú ajustas cada monto.</p></article>
+      <article class="card-f" data-reveal style="--d:.08s"><div class="mini" style="position:relative"><span class="doc2" aria-hidden="true"></span><div class="doc" aria-hidden="true"><i class="h"></i><i></i><i style="width:80%"></i><i></i><i style="width:65%"></i><i></i><i style="width:45%"></i><span class="tag">PDF</span></div></div><h3>Plan en PDF</h3><p>Descargas tu plan y tu cierre de enero, y los compartes desde el celular. También en iPhone.</p></article>
+      <article class="card-f" data-reveal style="--d:.16s"><div class="mini" data-mini="deudas"></div><h3>Deudas por prioridad</h3><p>Anotas cada deuda con su tasa de interés y la app las ordena. Eliges pagar primero la de mayor interés o la de menor saldo.</p></article>
       <article class="card-f" data-reveal style="--d:0s"><div class="mini" data-mini="gastos"></div><h3>Registro de gastos</h3><p>Cada compra que anotas se descuenta de su categoría y ves el saldo al momento.</p></article>
-      <article class="card-f" data-reveal style="--d:.08s"><div class="mini" data-mini="cal"></div><h3>Calendario de diciembre a enero</h3><p>El día que cobras, las fechas de fiestas y los pagos de enero en una sola vista.</p></article>
-      <article class="card-f" data-reveal style="--d:.16s"><div class="mini" data-mini="cierre"></div><h3>Cierre de enero</h3><p>Compara lo que planeaste con lo que gastaste de verdad.</p></article>
+      <article class="card-f" data-reveal style="--d:.08s"><div class="mini" data-mini="cal"></div><h3>Calendario de diciembre a enero</h3><p>El día que cobras, las fiestas, los pagos de deuda y los de enero, cada uno con su color, en una sola vista.</p></article>
+      <article class="card-f" data-reveal style="--d:.16s"><div class="mini" data-mini="cierre"></div><h3>Cierre de enero</h3><p>Compara lo que planeaste con lo que gastaste de verdad, categoría por categoría.</p></article>
     </div>
   </div>
 </section>
@@ -836,10 +878,30 @@ footer{background:#0B111D;color:rgba(255,255,255,.62);font-size:14px;padding:40p
     <ol class="steps" data-reveal>
       <li style="--sd:.1s"><span class="n">1</span><h3>Pagas en Hotmart</h3><p>Con los métodos de pago disponibles en tu país.</p></li>
       <li style="--sd:.5s"><span class="n">2</span><h3>Te llega un correo</h3><p>Trae el enlace a la app y las instrucciones para entrar.</p></li>
-      <li style="--sd:.9s"><span class="n">3</span><h3>Abres la app</h3><p>En el navegador del celular o de la computadora.</p></li>
+      <li style="--sd:.9s"><span class="n">3</span><h3>Abres la app</h3><p>En el navegador del celular o de la computadora. Es la pantalla que ves aquí abajo.</p></li>
       <li style="--sd:1.3s"><span class="n">4</span><h3>Armas tu plan</h3><p>Ajustas los montos, descargas el PDF y vas anotando tus gastos.</p></li>
     </ol>
     <p class="note" data-reveal><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>Si el correo no aparece, búscalo en promociones o spam. También puedes entrar a tu cuenta de Hotmart con el correo que usaste para pagar.</span></p>
+  </div>
+</section>
+
+<!-- CAPTURAS REALES DE LA APP -->
+<section class="sec alt" id="la-app" aria-labelledby="shots-title">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2 id="shots-title">Esto es lo que vas a abrir</h2>
+      <p>Capturas de la app, sin retoques. La de la izquierda es la primera pantalla al entrar; la de la derecha, cómo decide qué deuda pagar primero.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot-fig" data-reveal>
+        <div class="device"><img class="shot" src="app-bienvenida.jpg" width="560" height="1213" loading="lazy" decoding="async" alt="Pantalla de bienvenida de la app, con el texto: Vamos a repartir tu aguinaldo antes de que se gaste solo."></div>
+        <figcaption><b>Lo primero que ves</b><span>Te guía en cinco pasos o entras directo a armar tu plan.</span></figcaption>
+      </figure>
+      <figure class="shot-fig" data-reveal style="--d:.1s">
+        <div class="device"><img class="shot" src="app-deudas.jpg" width="560" height="1213" loading="lazy" decoding="async" alt="Pantalla de deudas de la app: debes 22,000 pesos en total, con un selector entre mayor interés primero y menor saldo primero, y una tarjeta de crédito al 62% anual de la que tu aguinaldo cubre 7,200 pesos."></div>
+        <figcaption><b>Qué pagar primero</b><span>Ordena por la tasa que más te cuesta y te dice cuánto liquidas al cobrar.</span></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -963,12 +1025,13 @@ const COUNTRIES = {
 const OTHER_CURRENCIES = ['USD','EUR','GTQ','HNL','NIO','CRC','PAB','DOP','BOB','PYG','UYU'];
 const EXAMPLE_BY_CURRENCY = { USD:1000, EUR:1000, GTQ:7000, HNL:22000, NIO:30000, CRC:450000, PAB:1000, DOP:50000, BOB:6000, PYG:6000000, UYU:35000 };
 
+// Mismo orden y mismos textos que muestra la app en "Asi queda tu plan".
 const CATS = [
-  { k:'deudas',  label:'Deudas',  desc:'Empieza por la de mayor interés', color:'var(--c-deudas)', hex:'#14213A' },
-  { k:'enero',   label:'Enero',   desc:'Renta, servicios y colegiaturas', color:'var(--c-enero)', hex:'#3E6FD8' },
-  { k:'regalos', label:'Regalos', desc:'Tope para todas las compras', color:'var(--c-regalos)', hex:'#FFC83D' },
-  { k:'fiestas', label:'Fiestas', desc:'Cenas, intercambios y salidas', color:'var(--c-fiestas)', hex:'#E9823F' },
-  { k:'ahorro',  label:'Ahorro',  desc:'Lo que guardas', color:'var(--c-ahorro)', hex:'#13A77A' },
+  { k:'deudas',  label:'Deudas',  desc:'Empieza por la de mayor interés', color:'var(--c-deudas)',  deep:'var(--c-deudas-deep)',  hex:'#4A3AA7' },
+  { k:'enero',   label:'Enero',   desc:'Renta, servicios y colegiaturas', color:'var(--c-enero)',   deep:'var(--c-enero-deep)',   hex:'#2A78D6' },
+  { k:'ahorro',  label:'Ahorro',  desc:'Lo que guardas y no se toca',     color:'var(--c-ahorro)',  deep:'var(--c-ahorro-deep)',  hex:'#1BAF7A' },
+  { k:'regalos', label:'Regalos', desc:'Tope para todas las compras',     color:'var(--c-regalos)', deep:'var(--c-regalos-deep)', hex:'#EDA100' },
+  { k:'fiestas', label:'Fiestas', desc:'Cenas, intercambios y salidas',   color:'var(--c-fiestas)', deep:'var(--c-fiestas-deep)', hex:'#E87BA4' },
 ];
 const CAT_LABEL = Object.fromEntries(CATS.map(c => [c.k, c.label]));
 
@@ -1101,21 +1164,32 @@ function tween(el, to, { from, dur = 260, format = fmt } = {}) {
 }
 
 /* =================== pantallas de la app =================== */
-const TABS = [['plan','Plan','i-pie'], ['gastos','Gastos','i-list'], ['cal','Calendario','i-cal'], ['deudas','Deudas','i-card']];
+// Las mismas cinco pestanas de la app, en su orden.
+const TABS = [['plan','Plan','i-pie'], ['gastos','Gastos','i-list'], ['deudas','Deudas','i-card'], ['cal','Calendario','i-cal'], ['cierre','Cierre','i-flag']];
 const phones = {};
 // El telefono del hero es una vista previa: sus pestanas se pueden tocar, pero
 // no deben ocupar los puestos 5 a 8 del recorrido con teclado, antes de
 // cualquier control real de la pagina. El del recorrido si es navegable.
 const tabbar = (active, focusable) => `<nav class="tabbar" aria-label="Secciones de la app">${TABS.map(([k, l, i]) =>
   `<button type="button" data-tab="${k}" class="${k === active ? 'on' : ''}" aria-pressed="${k === active}"${focusable ? '' : ' tabindex="-1"'}><svg class="ico" aria-hidden="true"><use href="#${i}"/></svg>${l}</button>`).join('')}</nav>`;
+// Remate de "hay mas": se usa solo en las pantallas que son el producto.
+const cut = (texto, flow) => `<div class="scr-cut${flow ? ' flow' : ''}"><span class="cut-chip"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>${texto}</span></div>`;
 const segs = p => CATS.map(c => `<i style="width:${p.total ? p[c.k] / p.total * 100 : 0}%;background:${c.color}"></i>`).join('');
 const catUsed = (p, cat) => state.expenses.filter(e => e.cat === cat).reduce((s, e) => s + e.f, 0) * p[cat];
 
 const SCREENS = {
   plan(p) {
-    const next = p.deudas > 0 ? `Pagar tarjeta: ${fmt(Math.min(p.deudas, p.debts * 0.6))}` : `Apartar enero: ${fmt(p.enero)}`;
-    return `<div><div class="scr-sub">${cap(C().bonus)} ${state.payDate.getFullYear()}</div><div class="scr-title">Mi plan</div></div>
-      <div class="grp pad"><div class="scr-sub">Por repartir</div><div class="amt-xl" data-amt-xl>${fmt(p.total)}</div><div class="bar" style="margin-top:10px">${segs(p)}</div></div>
+    // La app parte el aguinaldo en dos cifras: lo que puedes gastar y lo que
+    // queda apartado. Es el concepto mas claro del producto y aqui se calcula
+    // con los mismos montos, sin inventar nada.
+    const gastable = p.regalos + p.fiestas, apartado = p.deudas + p.enero + p.ahorro;
+    const next = p.deudas > 0 ? `Abona ${fmt(p.deudas)} a la deuda de mayor interés` : `Aparta ${fmt(p.enero)} para enero`;
+    return `<div><div class="scr-sub">${cap(C().bonus)} ${state.payDate.getFullYear()}</div><div class="scr-title">Te queda</div></div>
+      <div class="grp pad"><div class="amt-xl" data-amt-xl>${fmt(p.total)}</div><div class="scr-sub" style="margin-top:2px">Es todo tu ${C().bonus}. Aún no anotas gastos.</div><div class="bar" style="margin-top:10px">${segs(p)}</div></div>
+      <div class="split2">
+        <div class="grp pad"><div class="scr-sub">Puedes gastar</div><div class="amt-md" style="color:var(--c-regalos-deep)">${fmt(gastable)}</div><div class="scr-sub">En regalos y fiestas</div></div>
+        <div class="grp pad"><div class="scr-sub">Apartado</div><div class="amt-md">${fmt(apartado)}</div><div class="scr-sub">Deudas, enero y ahorro</div></div>
+      </div>
       <div class="grp">${CATS.filter(c => !p.total || p[c.k] > 0).map(c => `<div class="cell"><span class="dot" style="background:${c.color}"></span><span class="t">${c.label}</span><span class="v">${fmt(p[c.k])}</span></div>`).join('')}</div>
       <div class="grp"><div class="cell"><span class="t"><span class="s">Siguiente paso</span>${next}</span></div></div>`;
   },
@@ -1130,26 +1204,45 @@ const SCREENS = {
       if (y === t.getFullYear() && m === t.getMonth() && d === t.getDate()) cls.push('today');
       cells += `<span class="${cls.join(' ')}">${d}</span>`;
     }
-    const rows = [[shortDate(pd), 'Cobro', fmt(p.total)]];
-    if (m === 11 && pd.getDate() < 24) rows.push(['24 dic', 'Cena de Nochebuena', fmt(p.fiestas * 0.35)]);
-    rows.push(['ene', 'Pagos de enero', fmt(p.enero)]);
     return `<div><div class="scr-sub">${y}</div><div class="scr-title">${cap(fmtDate(pd, { month:'long' }))}</div></div>
       <div class="grp"><div class="cal">${cells}</div></div>
-      <div class="grp">${rows.map(r => `<div class="cell"><span class="d">${r[0]}</span><span class="t">${r[1]}</span><span class="v">${r[2]}</span></div>`).join('')}</div>`;
+      <div class="grp"><div class="cell"><span class="d">${shortDate(pd)}</span><span class="t">Cobras tu ${C().bonus}</span><span class="v">${fmt(p.total)}</span></div></div>
+      ${cut('Agrega tus fiestas y tus pagos de enero, y velos día por día')}`;
   },
   deudas(p) {
     const head = `<div><div class="scr-sub">Con tu ${C().bonus}</div><div class="scr-title">Deudas</div></div>`;
     if (!p.debts) {
-      return head + `<div class="grp pad" style="text-align:center;padding:22px 14px"><svg class="ico" style="margin:0 auto 8px;width:28px;height:28px;color:var(--green-deep)"><use href="#i-check-c"/></svg><b>Sin deudas registradas</b><div class="scr-sub" style="margin-top:4px">Ese dinero se va a enero y a ahorro. Escribe una deuda en la calculadora para verla aquí.</div></div>`;
+      return head + `<div class="grp pad" style="text-align:center;padding:22px 14px"><svg class="ico" style="margin:0 auto 8px;width:28px;height:28px;color:var(--green-deep)"><use href="#i-check-c"/></svg><b>Sin deudas registradas</b><div class="scr-sub" style="margin-top:4px">Ese dinero se va a enero y a ahorro. Escribe una deuda en la calculadora para verla aquí.</div></div>
+      ${cut('Anota cada deuda con su tasa y la app las ordena por la que más te cuesta', true)}`;
     }
-    const items = [{ n:'Tarjeta de crédito', t:p.debts * 0.6, pr:'Prioridad 1', hi:true }, { n:'Préstamo personal', t:p.debts * 0.4, pr:'Prioridad 2' }];
-    let left = p.deudas;
-    items.forEach(i => { i.pay = Math.min(left, i.t); left -= i.pay; });
+    // Antes esta pantalla inventaba un reparto "Tarjeta 60% / Prestamo 40%"
+    // que el visitante nunca escribio. Ahora solo muestra su propio total.
     return head + `<div class="grp">
         <div class="cell"><span class="t">Pagas al cobrar</span><span class="v">${fmt(p.deudas)}</span></div>
         <div class="cell"><span class="t">Queda por pagar</span><span class="v" style="color:${p.debtLeft ? 'var(--danger)' : 'var(--green-deep)'}">${fmt(p.debtLeft)}</span></div>
       </div>
-      <div class="grp">${items.map(i => `<div class="cell" style="display:block"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b>${i.n}</b><span class="pri ${i.hi ? 'hi' : ''}">${i.pr}</span></div><div class="scr-sub" style="margin-top:3px">${fmt(i.pay)} de ${fmt(i.t)}</div><div class="prog"><i style="width:${pct(i.pay, i.t)}%;background:var(--c-deudas)"></i></div></div>`).join('')}</div>`;
+      <div class="grp"><div class="cell" style="display:block">
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b>Lo que debes</b><span class="pri">${pct(p.deudas, p.debts)}% cubierto</span></div>
+        <div class="scr-sub" style="margin-top:3px">${fmt(p.deudas)} de ${fmt(p.debts)}</div>
+        <div class="prog"><i style="width:${pct(p.deudas, p.debts)}%;background:var(--c-deudas)"></i></div>
+      </div></div>
+      ${cut('Anota cada deuda con su tasa y la app las ordena por la que más te cuesta')}`;
+  },
+  cierre(p) {
+    // Plan contra real, con los gastos que el visitante haya anotado en la demo.
+    const filas = ['regalos'].map(k => {
+      const c = CATS.find(x => x.k === k), real = catUsed(p, k), plan = p[k] || 0;
+      const tope = Math.max(plan, real, 1);
+      return `<div class="cell" style="display:block">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>${c.label}</b><span class="pri${real > plan ? ' hi' : ''}">${real > plan ? 'Te pasaste' : `Quedan ${fmt(plan - real)}`}</span></div>
+        <div class="bar2"><span class="scr-sub">Plan</span><i><b style="width:${plan / tope * 100}%;background:#C9CEDA"></b></i><span class="v">${fmt(plan)}</span></div>
+        <div class="bar2"><span class="scr-sub">Real</span><i><b style="width:${real / tope * 100}%;background:${c.color}"></b></i><span class="v">${fmt(real)}</span></div>
+      </div>`;
+    }).join('');
+    return `<div><div class="scr-sub">Así vas</div><div class="scr-title">Cierre de enero</div></div>
+      <div class="grp pad"><div class="scr-sub">El cierre se completa a fines de enero. Mientras, aquí ves cómo vas contra lo que planeaste.</div></div>
+      <div class="grp">${filas}</div>
+      ${cut('Las cinco categorías, y tu cierre completo en PDF al terminar enero')}`;
   },
   gastos(p) {
     // Sigue la categoria del ultimo gasto anadido: antes siempre mostraba
@@ -1159,7 +1252,7 @@ const SCREENS = {
     return `<div><div class="scr-sub">Diciembre</div><div class="scr-title">Gastos</div></div>
       <div class="grp pad"><div class="scr-sub">Disponible en ${CAT_LABEL[k].toLowerCase()}</div><div class="amt-xl" data-left>${fmt(left)}</div><div class="prog"><i data-used-bar style="width:${Math.min(100, pct(used, cap))}%;background:${CATS.find(c => c.k === k).color}"></i></div><div class="scr-sub" style="margin-top:6px">Usado ${fmt(used)} de ${fmt(cap)}</div></div>
       <div class="grp">${state.expenses.slice(0, 3).map((e, i) => `<div class="cell${i === 0 && state.justAdded ? ' new' : ''}"><span class="t">${e.n}<span class="s">${CAT_LABEL[e.cat]}</span></span><span class="v">−${fmt(e.f * p[e.cat])}</span></div>`).join('')}</div>
-      <button type="button" class="add-btn" data-add><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg>Agregar gasto</button>`;
+      <button type="button" class="add-btn" data-add><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg>Anotar gasto</button>`;
   },
 };
 
@@ -1328,7 +1421,7 @@ const chipFeed = (() => {
 })();
 
 /* =================== recorrido con pestañas =================== */
-const TOUR_ORDER = ['plan','cal','deudas','gastos'];
+const TOUR_ORDER = ['plan','gastos','deudas','cal','cierre'];
 // seen: cuenta las pantallas mostradas solas. Tras una vuelta completa el
 // recorrido se detiene por si mismo, en vez de rotar para siempre.
 const tour = { auto: !reduceMotion.matches, visible:false, start:0, raf:0, dur:5200, seen:1, userPaused:false };
@@ -1427,7 +1520,7 @@ function renderWaterfall(p) {
 /* =================== tarjetas "Qué incluye" =================== */
 function renderMinis(p) {
   const top = Math.max(p.enero, p.regalos, p.ahorro, 1);
-  const rows = ['enero','regalos','ahorro'].map((k, i) => {
+  const rows = ['enero','ahorro','regalos'].map((k, i) => {
     const c = CATS.find(x => x.k === k);
     return `<div class="row"><span class="dot" style="background:${c.color}"></span><span class="t" style="flex:0 0 56px">${c.label}</span><span class="track" style="flex:1"><i class="g" style="width:${p[k] / top * 100}%;background:${c.color};--gd:${.2 + i * .12}s"></i></span><span class="v">${fmtShort(p[k])}</span></div>`;
   }).join('');
@@ -1776,7 +1869,8 @@ function init() {
     b.addEventListener('keydown', e => {
       if (!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(e.key)) return;
       e.preventDefault();
-      const j = (i + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1) + 4) % 4;
+      const n = TOUR_ORDER.length;
+      const j = (i + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1) + n) % n;
       tourGo(j, true); $$('.tt')[j].focus();
     });
   });
